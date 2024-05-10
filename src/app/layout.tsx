@@ -11,11 +11,6 @@ import type { Metadata } from 'next';
 import { Notifications } from '@mantine/notifications';
 import { ModalsProvider } from '@mantine/modals';
 
-export const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(DEFAULT_URL),
   title: 'Develog',
