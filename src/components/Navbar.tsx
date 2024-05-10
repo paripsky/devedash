@@ -14,7 +14,7 @@ export function Navbar() {
         variant="gradient"
         gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
       >
-        Develog
+        Devedash
       </Text>
       <Group>
         <ThemeToggle />

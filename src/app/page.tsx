@@ -20,7 +20,7 @@ export default async function Index() {
     <main>
       <Stack mt={rem(32)}>
         <Group justify='space-between'>
-          <Title>Develog</Title>
+          <Title>Devedash</Title>
           <Group>
             {user && <Button component={Link} href="/app">
               Go to dashboards
@@ -50,7 +50,7 @@ export default async function Index() {
                 }
               >
                 <ListItem>
-                  <b>Free and open source</b> - develog is released on github under the MIT license
+                  <b>Free and open source</b> - devedash is released on github under the MIT license
                 </ListItem>
                 <ListItem>
                   <b>TypeScript support</b> - build type safe widgets
@@ -72,7 +72,7 @@ export default async function Index() {
                   leftSection={null}
                   text="Get Started" />}
                 <Button component={Link} target="_blank"
-                  href="https://github.com/paripsky/develog" variant="default" radius="xl" size="md" className={classes.control}>
+                  href="https://github.com/paripsky/devedash" variant="default" radius="xl" size="md" className={classes.control}>
                   Source code
                 </Button>
               </Group>

@@ -13,7 +13,7 @@ import { ModalsProvider } from '@mantine/modals';
 
 export const metadata: Metadata = {
   metadataBase: new URL(DEFAULT_URL),
-  title: 'Develog',
+  title: 'Devedash',
   description: 'Build your own dashboard',
 };
 

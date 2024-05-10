@@ -1,6 +1,6 @@
-# Develog
+# Devedash
 
-Develog is a dashboard creation tool that lets users create dynamic dashboards consisting of customizable widgets.
+Devedash is a dashboard creation tool that lets users create dynamic dashboards consisting of customizable widgets.
 
 Built with React, Mantine UI, Sandpack and Supabase.
 
@@ -15,18 +15,18 @@ Built with React, Mantine UI, Sandpack and Supabase.
 
 ## Getting Started
 
-To get started with Develog, follow these steps:
+To get started with Devedash, follow these steps:
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/paripsky/develog.git
+git clone https://github.com/paripsky/devedash.git
 ```
 
 2. Install dependencies:
 
 ```bash
-cd develog
+cd devedash
 npm install
 ```
 
