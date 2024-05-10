@@ -2,8 +2,6 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import './globals.css';
 
-import { Inter as FontSans } from 'next/font/google';
-import { DEFAULT_URL } from '@/utils/defaultURL';
 import { ColorSchemeScript, Container, MantineProvider } from '@mantine/core';
 
 import type { Metadata } from 'next';
@@ -12,7 +10,7 @@ import { Notifications } from '@mantine/notifications';
 import { ModalsProvider } from '@mantine/modals';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(DEFAULT_URL),
+  metadataBase: new URL('https://devedash.vercel.app'),
   title: 'Devedash',
   description: 'Build your own dashboard',
 };
