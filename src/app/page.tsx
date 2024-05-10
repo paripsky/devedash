@@ -1,95 +1,86 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import AuthButton from '@/components/AuthButton';
+import { LoginWithGithubButton } from '@/components/LoginWithGithubButton';
+import { createClient } from '@/utils/supabase/server';
+import { Button, Group, Stack, Title, rem, Container, Text, Image, List, ThemeIcon, ListItem } from '@mantine/core';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
 
-export default function Home() {
+import classes from './page.module.css';
+import { IconCheck } from '@tabler/icons-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
+
+export default async function Index() {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <main>
+      <Stack mt={rem(32)}>
+        <Group justify='space-between'>
+          <Title>Develog</Title>
+          <Group>
+            {user && <Button component={Link} href="/app">
+              Go to dashboards
+            </Button>}
+            {!user && <AuthButton />}
+            <ThemeToggle />
+          </Group>
+        </Group>
+        <Container size="md">
+          <div className={classes.inner}>
+            <div className={classes.content}>
+              <Title className={classes.title}>
+                Build <span className={classes.highlight}>dashboards</span> using your favorite javascript library
+              </Title>
+              <Text c="dimmed" mt="md">
+                Build fully functional dashboards faster than ever - Use React, Vue, Svelte & more to build custom widgets
+              </Text>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+              <List
+                mt={30}
+                spacing="sm"
+                size="sm"
+                icon={
+                  <ThemeIcon size={20} radius="xl">
+                    <IconCheck style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
+                  </ThemeIcon>
+                }
+              >
+                <ListItem>
+                  <b>Free and open source</b> - develog is released on github under the MIT license
+                </ListItem>
+                <ListItem>
+                  <b>TypeScript support</b> - build type safe widgets
+                </ListItem>
+                <ListItem>
+                  <b>Build using any framework</b> - comes with built in templates for React, Vue, Svelte & more
+                </ListItem>
+              </List>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+              <Group mt={30}>
+                {user ? (<Button
+                  component={Link}
+                  href="/app"
+                  radius="xl" size="md" className={classes.control}
+                >
+                  Go to dashboards
+                </Button>) : <LoginWithGithubButton
+                  radius="xl" size="md" className={classes.control}
+                  leftSection={null}
+                  text="Get Started" />}
+                <Button component={Link} target="_blank"
+                  href="https://github.com/paripsky/develog" variant="default" radius="xl" size="md" className={classes.control}>
+                  Source code
+                </Button>
+              </Group>
+            </div>
+            <Image src="/dashboards.svg" className={classes.image} />
+          </div>
+        </Container>
+      </Stack>
     </main>
   );
 }
